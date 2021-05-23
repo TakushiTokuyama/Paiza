@@ -1,0 +1,177 @@
+// 標準入出力
+
+// 単純な入出力
+function execute01() {
+    // 標準入力
+    process.stdin.resume();
+    process.stdin.setEncoding('utf8');
+
+    var lines = [];
+    var reader = require('readline').createInterface({
+        input: process.stdin,
+        output: process.stdout
+    });
+
+    reader.on('line', (line) => {
+        lines.push(line);
+    });
+
+    reader.on('close', () => {
+        console.log(lines[0]);
+    });
+}
+
+// 複数行にわたる出力
+function execute02() {
+    // 標準入力
+    process.stdin.resume();
+    process.stdin.setEncoding('utf8');
+
+    var lines = [];
+    var reader = require('readline').createInterface({
+        input: process.stdin,
+        output: process.stdout
+    });
+
+    reader.on('line', (line) => {
+        lines.push(parseInt(line));
+    });
+
+    reader.on('close', () => {
+        for (var i = 0; i < lines[0]; i++)
+            console.log('paiza');
+    });
+}
+
+// 複数行にわたる入力
+function execute03() {
+    // 標準入力
+    process.stdin.resume();
+    process.stdin.setEncoding('utf8');
+
+    var lines = [];
+    var reader = require('readline').createInterface({
+        input: process.stdin,
+        output: process.stdout
+    });
+
+    reader.on('line', (line) => {
+        lines.push(line);
+    });
+
+    reader.on('close', () => {
+        lines.shift();
+        lines.forEach(line => { console.log(line); });
+    });
+}
+
+// 入力の配列による保持
+function execute04() {
+    // 標準入力
+    process.stdin.resume();
+    process.stdin.setEncoding('utf8');
+
+    var lines = [];
+    var reader = require('readline').createInterface({
+        input: process.stdin,
+        output: process.stdout
+    });
+
+    reader.on('line', (line) => {
+        lines.push(line);
+    });
+
+    reader.on('close', () => {
+        lines.shift();
+        lines.sort((a, b) => b - a);
+        console.log(lines[0]);
+    });
+}
+
+// 半角スペース区切りでの出力
+function execute05() {
+    // 標準入力
+    process.stdin.resume();
+    process.stdin.setEncoding('utf8');
+
+    var lines = [];
+    var reader = require('readline').createInterface({
+        input: process.stdin,
+        output: process.stdout
+    });
+
+    reader.on('line', (line) => {
+        lines.push(parseInt(line));
+    });
+
+    reader.on('close', () => {
+
+        var str = '';
+        for (var i = 0; i < lines[0]; i++) {
+            str += 'paiza ';
+        }
+        console.log(str.trim() + '\n');
+    });
+}
+
+//改行区切りでの出力 
+function execute06() {
+    // 標準入力
+    process.stdin.resume();
+    process.stdin.setEncoding('utf8');
+
+    var lines = [];
+    var reader = require('readline').createInterface({
+        input: process.stdin,
+        output: process.stdout
+    });
+
+    reader.on('line', (line) => {
+        lines.push(line);
+    });
+
+    reader.on('close', () => {
+
+        lines.shift();
+        var strs = lines[0].split(' ');
+        for (var i = 0; i < strs.length; i++) {
+            console.log(strs[i]);
+        }
+    });
+}
+
+// 標準入出力
+function execute07() {
+    // 標準入力
+    process.stdin.resume();
+    process.stdin.setEncoding('utf8');
+
+    var lines = [];
+    var reader = require('readline').createInterface({
+        input: process.stdin,
+        output: process.stdout
+    });
+
+    reader.on('line', (line) => {
+        lines.push(line);
+    });
+
+    reader.on('close', () => {
+
+        lines.shift();
+        for (var i = 0; i < lines.length; i++) {
+            var [name, age] = lines[i].split(' ');
+            age++;
+            console.log(`${name} ${age}`);
+        }
+    });
+}
+
+
+exports.execute01 = execute01;
+exports.execute02 = execute02;
+exports.execute03 = execute03;
+exports.execute04 = execute04;
+exports.execute05 = execute05;
+exports.execute06 = execute06;
+exports.execute07 = execute07;
