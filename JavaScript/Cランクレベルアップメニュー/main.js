@@ -1,3 +1,3 @@
 var exe = require('./execute03.js');
 
-exe.execute04();
+exe.execute04Test();
