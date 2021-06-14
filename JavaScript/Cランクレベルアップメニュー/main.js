@@ -1,3 +1,3 @@
-var exe = require('./execute03.js');
+var exe = require('./execute04.js');
 
-exe.execute04Test();
+exe.execute02();
