@@ -1,3 +1,5 @@
+const { inspect } = require('util');
+
 // 単語のカウント
 function execute01() {
     // 標準入力
@@ -119,6 +121,48 @@ function execute03() {
     });
 }
 
+// 野球の審判
+function execute04() {
+    // 標準入力
+    process.stdin.resume();
+    process.stdin.setEncoding('utf8');
+
+    var lines = [];
+    var reader = require('readline').createInterface({
+        input: process.stdin,
+        output: process.stdout
+    });
+
+    reader.on('line', (line) => {
+        lines.push(line);
+    });
+
+    reader.on('close', () => {
+
+        lines.shift();
+
+        let strikeCount = 0;
+        let ballCount = 0;
+
+        lines.forEach(line => {
+
+            if (line === 'strike') {
+                strikeCount++;
+            } else {
+                ballCount++;
+            }
+            
+            let result = line === 'strike' && strikeCount === 3 ? 'out!'
+                : line === 'ball' && ballCount === 4 ? 'fourball!'
+                    : line === 'strike' ? "strike!" : "ball!"
+
+
+            console.log(result);
+        });
+    });
+}
+
 exports.execute01 = execute01;
 exports.execute02 = execute02;
 exports.execute03 = execute03;
+exports.execute04 = execute04;
