@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 class Main {
     public static void main(String[] args) {
@@ -25,6 +26,8 @@ class Main {
         // q2_5();
         // q2_6();
         // q2_7();
+        // q3_1();
+        // q3_2();
     }
 
     // q1標準入出力
@@ -159,6 +162,7 @@ class Main {
         }
     }
 
+    // 文字列
     // 整数と文字列
     private static void q2_1() {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -311,6 +315,53 @@ class Main {
 
                 System.out.println(LocalTime.of(Integer.parseInt(startTime[0]), Integer.parseInt(startTime[1])).plusHours(Integer.parseInt(strs[1])).plusMinutes(Integer.parseInt(strs[2])));
             }
+
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // for文
+    // 3の倍数のカウント
+    private static void q3_1(){
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        try {
+            String n = reader.readLine();
+
+            String s = reader.readLine();
+
+            int[] numbers = Stream.of(s.split(" ")).mapToInt(Integer::parseInt)
+                                                   .filter(i -> i % 3 == 0).toArray();
+
+            System.out.println(numbers.length);
+
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // フラグ管理
+    private static void q3_2(){
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        try {
+            int n = Integer.parseInt(reader.readLine());
+
+            String[] list = new String[n]; 
+
+            for (int i = 0; i < n; i++) {
+                String str = reader.readLine();
+                list[i] = str;
+            }
+
+            if(Stream.of(list).anyMatch(i -> i.equals("7"))){
+                System.out.println("YES");
+            }else{
+                System.out.println("NO");
+            };
 
             reader.close();
         } catch (IOException e) {
