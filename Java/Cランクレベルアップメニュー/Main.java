@@ -283,10 +283,6 @@ class Main {
 
             System.out.println(result);
 
-            // minutes 30 -x
-
-            // hour +1 23 - 01
-
             reader.close();
         } catch (IOException e) {
             e.printStackTrace();
