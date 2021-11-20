@@ -3,6 +3,7 @@ package Cランクレベルアップメニュー;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.UncheckedIOException;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -28,6 +29,10 @@ class Main {
         // q2_7();
         // q3_1();
         // q3_2();
+        // q3_3();
+        // q3_4();
+        q3_5();
+
     }
 
     // q1標準入出力
@@ -277,12 +282,12 @@ class Main {
             if (30 <= Integer.parseInt(slist[1])) {
                 if (23 <= Integer.parseInt(slist[0])) {
                     result += "00";
-                }else{
+                } else {
                     result += String.format("%02d", Integer.parseInt(slist[0]) + 1);
                 }
                 result += ":" + String.format("%02d", -1 * (30 - Integer.parseInt(slist[1])));
-            }else{
-                result += slist[0] + ":" +  (30 + Integer.parseInt(slist[1]));
+            } else {
+                result += slist[0] + ":" + (30 + Integer.parseInt(slist[1]));
             }
 
             System.out.println(result);
@@ -294,26 +299,27 @@ class Main {
     }
 
     // 文字列
-    private static void q2_7(){
+    private static void q2_7() {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
         try {
 
             int n = Integer.parseInt(reader.readLine());
 
-            String[] list = new String[n]; 
+            String[] list = new String[n];
 
             for (int i = 0; i < n; i++) {
                 String str = reader.readLine();
                 list[i] = str;
             }
 
-            for(int i = 0; i < list.length; i++){
+            for (int i = 0; i < list.length; i++) {
                 String[] strs = list[i].split(" ");
 
-                String [] startTime = strs[0].split(":");
+                String[] startTime = strs[0].split(":");
 
-                System.out.println(LocalTime.of(Integer.parseInt(startTime[0]), Integer.parseInt(startTime[1])).plusHours(Integer.parseInt(strs[1])).plusMinutes(Integer.parseInt(strs[2])));
+                System.out.println(LocalTime.of(Integer.parseInt(startTime[0]), Integer.parseInt(startTime[1]))
+                        .plusHours(Integer.parseInt(strs[1])).plusMinutes(Integer.parseInt(strs[2])));
             }
 
             reader.close();
@@ -324,7 +330,7 @@ class Main {
 
     // for文
     // 3の倍数のカウント
-    private static void q3_1(){
+    private static void q3_1() {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
         try {
@@ -332,8 +338,7 @@ class Main {
 
             String s = reader.readLine();
 
-            int[] numbers = Stream.of(s.split(" ")).mapToInt(Integer::parseInt)
-                                                   .filter(i -> i % 3 == 0).toArray();
+            int[] numbers = Stream.of(s.split(" ")).mapToInt(Integer::parseInt).filter(i -> i % 3 == 0).toArray();
 
             System.out.println(numbers.length);
 
@@ -344,28 +349,154 @@ class Main {
     }
 
     // フラグ管理
-    private static void q3_2(){
+    private static void q3_2() {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
         try {
             int n = Integer.parseInt(reader.readLine());
 
-            String[] list = new String[n]; 
+            String[] list = new String[n];
 
             for (int i = 0; i < n; i++) {
                 String str = reader.readLine();
                 list[i] = str;
             }
 
-            if(Stream.of(list).anyMatch(i -> i.equals("7"))){
+            if (Stream.of(list).anyMatch(i -> i.equals("7"))) {
                 System.out.println("YES");
-            }else{
+            } else {
                 System.out.println("NO");
             };
 
             reader.close();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    // インデックス取得
+    private static void q3_3() {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        // 人数
+        int n;
+        // 人々
+        int[] a;
+        // 財産
+        int k;
+
+        try {
+
+            String N = reader.readLine();
+            n = Integer.parseInt(N);
+
+            a = new int[n];
+
+            for (int i = 0; i < n; i++) {
+                String A = reader.readLine();
+                a[i] = Integer.parseInt(A);
+            }
+
+            String K = reader.readLine();
+            k = Integer.parseInt(K);
+
+            reader.close();
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
+
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] == k) {
+                System.out.println(i + 1);
+                break;
+            }
+        }
+    }
+
+    // 多重ループ
+    private static void q3_4() {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        // 文字の数
+        int m;
+        // 文字
+        String[] c;
+        // 文字列の数
+        int n;
+        // 文字列
+        String[] s;
+
+        try {
+
+            String M = reader.readLine();
+            m = Integer.parseInt(M);
+
+            c = new String[m];
+
+            for (int i = 0; i < m; i++) {
+                c[i] = reader.readLine();
+            }
+
+            String N = reader.readLine();
+            n = Integer.parseInt(N);
+
+            s = new String[n];
+
+            for (int i = 0; i < n; i++) {
+                s[i] = reader.readLine();
+            }
+
+            reader.close();
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
+
+        for (int i = 0; i < c.length; i++) {
+            for (int j = 0; j < s.length; j++) {
+                if (s[j].contains(c[i])) {
+                    System.out.println("YES");
+                } else {
+                    System.out.println("NO");
+                }
+            }
+        }
+    }
+
+    // forループ
+    private static void q3_5() {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        // 人数
+        int n;
+        // 数
+        int m;
+        // 正解
+        int k;
+        // 好きな数字
+        String[] a;
+
+        try {
+
+            String line = reader.readLine();
+            int[] lines = Stream.of(line.split(" ")).mapToInt(Integer::parseInt).toArray();
+            n = lines[0];
+            m = lines[1];
+            k = lines[2];
+
+            a = new String[n];
+
+            for (int i = 0; i < n; i++) {
+                String A = reader.readLine();
+                a[i] = A;
+            }
+
+            reader.close();
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
+
+        for (int i = 0; i < a.length; i++) {
+            long count = Stream.of(a[i].split(" ")).filter(number -> number.equals(String.valueOf(k))).count();
+            System.out.println(count);
         }
     }
 }
