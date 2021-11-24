@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.UncheckedIOException;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 import java.util.stream.IntStream;
@@ -31,7 +32,9 @@ class Main {
         // q3_2();
         // q3_3();
         // q3_4();
-        q3_5();
+        // q3_5();
+        // q4_1();
+        q4_2();
 
     }
 
@@ -497,6 +500,66 @@ class Main {
         for (int i = 0; i < a.length; i++) {
             long count = Stream.of(a[i].split(" ")).filter(number -> number.equals(String.valueOf(k))).count();
             System.out.println(count);
+        }
+    }
+
+    // 昇順ソート
+    private static void q4_1() {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        // 入力数
+        int n;
+        // 数
+        int[] a;
+
+        try {
+
+            String N = reader.readLine();
+            n = Integer.parseInt(N);
+
+            a = new int[n];
+
+            for (int i = 0; i < n; i++) {
+                String A = reader.readLine();
+                a[i] = Integer.parseInt(A);
+            }
+
+            reader.close();
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
+
+        Arrays.stream(a).sorted().forEach(i -> System.out.println(i));
+    }
+
+    // 降順ソート
+    private static void q4_2() {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        // 入力数
+        int n;
+        // 数
+        int[] a;
+
+        try {
+
+            String N = reader.readLine();
+            n = Integer.parseInt(N);
+
+            a = new int[n];
+
+            for (int i = 0; i < n; i++) {
+                String A = reader.readLine();
+                a[i] = Integer.parseInt(A);
+            }
+
+            reader.close();
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
+
+        Arrays.sort(a);
+
+        for (int i = n - 1; 0 <= i; i--) {
+            System.out.println(a[i]);
         }
     }
 }
